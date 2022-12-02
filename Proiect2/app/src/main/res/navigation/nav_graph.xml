@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/nav_graph"
+app:startDestination="@id/loginFragment">
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.proiect.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_welcomeFragment"
+            app:destination="@id/pagerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pagerFragment"
+        android:name="com.example.proiect.pager.PagerFragment"
+        android:label="fragment_pager"
+        tools:layout="@layout/pager_fragment" >
+        <action
+            android:id="@+id/action_person_to_details"
+            app:destination="@+id/personDetailsFragment" />
+        <action
+            android:id="@+id/action_sign_out"
+            app:destination="@+id/loginFragment" />
+        <action
+            android:id="@+id/initiate_add_person"
+            app:destination="@+id/addPersonOptions"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addPersonOptions"
+    android:name="com.example.proiect.people.addPerson.sourceSelection.SelectSourceFragment"
+    android:label="fragment_add_person_source"
+    tools:layout="@layout/fragment_add_person_source" >
+        <action
+            android:id="@+id/action_add_person_source_to_person_list"
+            app:destination="@+id/addPerson" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPerson"
+        android:name="com.example.proiect.people.addPerson.personSelection.PersonSelectionFragment"
+        android:label="fragment_add_person_list"
+        tools:layout="@layout/fragment_add_person_list" >
+        <argument
+            android:name="fromContacts"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/confirm_person"
+            app:destination="@id/pagerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personDetailsFragment"
+        android:name="com.example.proiect.people.personDetails.PersonDetailsFragment"
+        android:label="fragment_go_to_details"
+        tools:layout="@layout/fragment_person_details" >
+        <argument
+            android:name="characterId"
+            app:argType="integer" />
+    </fragment>
+</navigation>
