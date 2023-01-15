@@ -1,6 +1,7 @@
 package com.example.proiect.login
 
 import androidx.lifecycle.ViewModel
+import com.example.proiect.model.LoggedInUser
 import com.example.repo.UserRepoImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -37,6 +38,7 @@ class LoginViewModel : ViewModel() {
 
         if(userRepo.checkCredentials(username, password))
             _viewState.update { state ->
+                LoggedInUser.login(username)
                 state.copy(
                     action = LoginViewAction.LoggedIn
                 )

@@ -2,6 +2,7 @@ package com.example.proiect.model
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import com.example.proiect.navigation.firstPage.NavigationFirstPageFragment
 import com.example.proiect.people.contacts.PeopleFragment
 
 /**
@@ -12,6 +13,35 @@ object LoggedInUser {
     var role: Role = Role.USER
     var contactPeople: MutableList<Person> = mutableListOf(
     Person(69,"Nume",null,"mock","Phone",Role.USER)
+    )
+    var savedLocations: MutableList<Location> = mutableListOf(
+        Location(1,"Magazin","Magazinul pentru mancare",
+            "Str. Republicii nr 101"),
+        Location(1,
+            "Căminul numărul 7",
+            "Acasă",
+            "Strada Observatorului, Cluj-Napoca 400000"
+        ),
+        Location(2,
+            "Spitalul Județean de Urgență Cluj-Napoca",
+            "Spital pentru control medical",
+            "Str. Clinicilor 3-5, Cluj-Napoca 400347"
+        ),
+        Location(3,
+            "Lidl",
+            "Magazin alimentar pentru mâncare",
+            "Strada Republicii 109, Cluj-Napoca 400489"
+        ),
+        Location(4,
+            "Auchan",
+            "Hypermarket pentru nevoi extra",
+            "Strada Alexandru Vaida Voevod 53B, Cluj-Napoca 400436"
+        ),
+        Location(5,
+            "Îngrijitor",
+            "Casa îngrijitorului",
+            "Strada Vasile Lupu nr.35, Cluj-Napoca 400423"
+        )
     )
 
     fun login(user: String) {
@@ -31,49 +61,15 @@ object LoggedInUser {
             Role.PACIENT -> {
                 return listOf(
                     Option("Contacte", PeopleFragment()),
-                    Option("Navigare", PeopleFragment()),
+                    Option("Navigare", NavigationFirstPageFragment()),
                     Option("Activitati", PeopleFragment())
                 )
             }
             Role.MEDIC -> {
-                return listOf()
+                return listOf(
+                    Option("Contacte", PeopleFragment())
+                )
             }
         }
     }
-}
-
-data class Option (
-    val name: String,
-    val fragment: Fragment)
-
-data class ActionOption(
-    val name: String,
-    val description: String
-)
-
-data class Session(
-    val id: Int,
-    val name: String,
-    val password: String,
-    val role: Role,
-    var contactPeople: MutableList<Person>
-)
-object AvailableSession{
-    var possibleUsers: MutableList<Session> = mutableListOf(
-        Session(
-            0,"user123","user123",Role.USER,mutableListOf(
-                Person(69,"Nume",null,"mock","Phone",Role.USER)
-            )
-        ),
-        Session(
-            0,"pacient123","pacient123",Role.PACIENT,mutableListOf(
-                Person(69,"Nume",null,"mock","Phone",Role.USER)
-            )
-        ),
-        Session(
-            0,"medic123","medic123",Role.MEDIC,mutableListOf(
-                Person(69,"Nume",null,"mock","Phone",Role.USER)
-            )
-        )
-    )
 }

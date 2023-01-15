@@ -50,7 +50,7 @@ class SelectSourceFragment: Fragment() {
         binding.toolbar.setNavigationOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
-
+        binding.toolbar.title = "Adauga un nou contact"
         binding.toolbar.menu.getItem(0).setOnMenuItemClickListener {
             val dialogBuilder = AlertDialog.Builder(requireContext())
             dialogBuilder

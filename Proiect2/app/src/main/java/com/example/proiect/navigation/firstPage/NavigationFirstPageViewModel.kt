@@ -1,21 +1,21 @@
-package com.example.proiect.people
+package com.example.proiect.navigation.firstPage
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.proiect.model.Person
-import com.example.repo.PersonRepo
-import com.example.repo.PersonRepoImpl
+import com.example.proiect.model.Location
+import com.example.repo.LocationsRepoImpl
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class PeopleViewModel(private val repository: PersonRepo = PersonRepoImpl)
+class NavigationFirstPageViewModel()
     : ViewModel() {
+    private val repository = LocationsRepoImpl
     private val _viewState = MutableStateFlow(
         PeopleViewState(
-            characters = emptyList(),
+            locations = emptyList(),
             isLoading = false
         )
     )
@@ -30,11 +30,11 @@ class PeopleViewModel(private val repository: PersonRepo = PersonRepoImpl)
                     isLoading = true
                 )
             }
-            val chars = repository.getContactPeople()
+            val res = repository.getSavedLocations()
             delay(2000)
             _viewState.update {
                 it.copy(
-                    characters = chars,
+                    locations = res,
                     isLoading = false
                 )
             }
@@ -42,10 +42,10 @@ class PeopleViewModel(private val repository: PersonRepo = PersonRepoImpl)
     }
 
     fun searchByName(name: String) {
-        val people = repository.searchPerson(name)
+        val res = repository.searchSavedLocationByName(name)
         _viewState.update {
             it.copy(
-                characters = people,
+                locations = res,
                 isLoading = false
             )
         }
@@ -53,6 +53,6 @@ class PeopleViewModel(private val repository: PersonRepo = PersonRepoImpl)
 }
 
 data class PeopleViewState(
-    val characters: List<Person>,
+    val locations: List<Location>,
     val isLoading: Boolean
 )
