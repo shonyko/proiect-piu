@@ -17,6 +17,7 @@ import com.example.proiect.databinding.FragmentLocationOptionsBinding
 import com.example.proiect.pager.PagerFragmentDirections
 
 class NavigationFirstPageFragment : Fragment() {
+
     private var _binding: FragmentLocationOptionsBinding? = null
     private val binding get() = _binding!!
 
@@ -28,7 +29,7 @@ class NavigationFirstPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding =  FragmentLocationOptionsBinding.inflate(inflater, container, false)
+        _binding = FragmentLocationOptionsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -59,18 +60,22 @@ class NavigationFirstPageFragment : Fragment() {
         }
         binding.searchInput.editText?.onFocusChangeListener =
             View.OnFocusChangeListener { v, hasFocus ->
-                binding.searchIcon.setImageResource(if(!hasFocus) R.drawable.ic_baseline_search_24
-                else R.drawable.ic_baseline_cancel_24)
-                if(!hasFocus){
-                    val imm = this@NavigationFirstPageFragment.context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                binding.searchIcon.setImageResource(
+                    if (!hasFocus) R.drawable.ic_baseline_search_24
+                    else R.drawable.ic_baseline_cancel_24
+                )
+                if (!hasFocus) {
+                    val imm =
+                        this@NavigationFirstPageFragment.context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                     imm.hideSoftInputFromWindow(v.windowToken, 0)
                 }
             }
         binding.searchIcon.setOnClickListener {
             binding.searchInput.editText?.clearFocus()
         }
-        binding.addPerson.setOnClickListener {
-            val direction = PagerFragmentDirections.initiateAddPerson()
+
+        binding.addLocation.setOnClickListener {
+            val direction = PagerFragmentDirections.actionPagerFragmentToAddLocationFragment()
             findNavController().navigate(direction)
         }
     }
@@ -78,20 +83,20 @@ class NavigationFirstPageFragment : Fragment() {
     private fun observeState() {
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.viewState.collect { state ->
-                binding.noResults.visibility = if(!state.isLoading && state.locations.isEmpty()) View.VISIBLE
-                else View.GONE
-                binding.loading.visibility = if(state.isLoading) View.VISIBLE else View.GONE
-                binding.list.visibility = if(state.isLoading) View.GONE else View.VISIBLE
-                binding.addPerson.visibility = if(state.isLoading) View.GONE else View.VISIBLE
-                binding.searchBarAndButton.visibility = if(state.isLoading) View.GONE else View.VISIBLE
+                binding.noResults.visibility =
+                    if (!state.isLoading && state.locations.isEmpty()) View.VISIBLE
+                    else View.GONE
+                binding.loading.visibility = if (state.isLoading) View.VISIBLE else View.GONE
+                binding.list.visibility = if (state.isLoading) View.GONE else View.VISIBLE
+                binding.addLocation.visibility = if (state.isLoading) View.GONE else View.VISIBLE
                 locationsAdapter.refreshData(state.locations)
             }
         }
     }
 
     override fun onDestroyView() {
-        _binding = null
         super.onDestroyView()
+        _binding = null
     }
 
 }

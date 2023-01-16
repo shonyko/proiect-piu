@@ -1,106 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".navigation.firstPage.NavigationFirstPageFragment"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".navigation.firstPage.NavigationFirstPageFragment">
+
     <TextView
         android:id="@+id/errView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:text="Locatiile dumneavoastra nu au putut fi obtinute"
-        />
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/noResults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nu ai nicio locatie cu acest nume sau la aceasta adresa"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/listAndSearch"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/addPerson"
-        android:id="@+id/listAndSearch"
-        >
-        <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintBottom_toTopOf="@id/add_location"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/searchBarAndButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/list"
-            android:id="@+id/searchBarAndButton">
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/list_container"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/searchInput"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/searchIcon"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_weight="80"
+                android:hint="Caută locație"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                android:hint="Cauta locatie"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_marginHorizontal="32dp"
-                >
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/searchEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/white"
 
-                    android:maxLines="1"
                     android:inputType="text"
-                    android:textSize="24sp"/>
+                    android:maxLines="1"
+                    android:textSize="24sp" />
+
             </com.google.android.material.textfield.TextInputLayout>
+
             <ImageButton
-                android:layout_marginRight="6dp"
                 android:id="@+id/searchIcon"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="6dp"
                 android:background="@color/white"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:src="@drawable/ic_baseline_search_24"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <TextView
-            android:id="@+id/noResults"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:layout_margin="20dp"
-            app:layout_constraintTop_toBottomOf="@id/searchBarAndButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Nu ai nicio locatie cu acest nume sau la aceasta adresa"
-            />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list"
+                android:contentDescription="@string/search_icon"
+                android:src="@drawable/ic_baseline_search_24" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/list_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-
-            app:layout_constraintTop_toBottomOf="@id/searchBarAndButton"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchBarAndButton"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/searchBarAndButton">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/searchBarAndButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ImageButton
-        android:id="@+id/addPerson"
+        android:id="@+id/add_location"
         android:layout_margin="10dp"
         android:layout_width="70dp"
         android:layout_height="70dp"
@@ -108,7 +109,6 @@
         android:src="@drawable/ic_baseline_add_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
