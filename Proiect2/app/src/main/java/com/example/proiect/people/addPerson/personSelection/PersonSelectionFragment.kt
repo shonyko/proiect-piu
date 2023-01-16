@@ -82,10 +82,6 @@ class PersonSelectionFragment : Fragment() {
         binding.searchIcon.setOnClickListener {
             binding.searchInput.editText?.clearFocus()
         }
-        binding.toolbar.setNavigationOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
-        }
-        binding.toolbar.title = "Adaugare contact"
         binding.noResults.text = if(viewModel.showPhone) "Nu exista persoane in telefonul tau cu acest nume"
                 else "Utilizatorul cautat nu exista"
     }
@@ -95,6 +91,7 @@ class PersonSelectionFragment : Fragment() {
             viewModel.viewState.collect { state ->
                 binding.noResults.visibility = if(!state.isLoading && state.characters.isEmpty()) View.VISIBLE
                 else View.GONE
+                binding.searchBarAndButton.visibility = if(state.isLoading) View.GONE else View.VISIBLE
                 binding.loading.visibility = if(state.isLoading) View.VISIBLE else View.GONE
                 binding.list.visibility = if(state.isLoading) View.GONE else View.VISIBLE
                 selectionAdapter.refreshData(state.characters)

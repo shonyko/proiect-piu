@@ -2,7 +2,7 @@ package com.example.proiect.login
 
 import androidx.lifecycle.ViewModel
 import com.example.proiect.model.LoggedInUser
-import com.example.repo.UserRepoImpl
+import com.example.proiect.repo.UserRepoImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

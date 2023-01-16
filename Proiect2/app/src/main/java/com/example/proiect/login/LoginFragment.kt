@@ -1,15 +1,17 @@
 package com.example.proiect.login
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
+import com.example.proiect.MainActivity
 import com.example.proiect.databinding.FragmentLoginBinding
+
 
 class LoginFragment : Fragment() {
 
@@ -53,8 +55,7 @@ class LoginFragment : Fragment() {
             viewModel.viewState.collect {
                 when (it.action) {
                     LoginViewAction.LoggedIn -> {
-                        val direction = LoginFragmentDirections.actionLoginFragmentToWelcomeFragment()
-                        findNavController().navigate(direction)
+                        startActivity(Intent(requireContext(), MainActivity::class.java))
                     }
                     is LoginViewAction.ShowInputErrors -> {
                         binding.usernameInputErr.text = errorString("Username", it.action.usernameError)

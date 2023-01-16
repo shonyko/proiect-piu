@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.proiect.model.Person
 import com.example.proiect.people.PeopleViewModel
 import com.example.proiect.people.PeopleViewState
-import com.example.repo.PersonRepo
-import com.example.repo.PersonRepoImpl
+import com.example.proiect.repo.PersonRepo
+import com.example.proiect.repo.PersonRepoImpl
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

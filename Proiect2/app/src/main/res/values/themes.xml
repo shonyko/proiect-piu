@@ -13,4 +13,21 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="chat_my_message">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:background">@color/secondaryColor</item>
+        <item name="android:gravity">right</item>
+        <item name="android:paddingBottom">5dip</item>
+    </style>
+    <style name="chat_other_message">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:background">@color/mainColor</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingBottom">5dip</item>
+    </style>
 </resources>

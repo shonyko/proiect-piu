@@ -3,7 +3,7 @@ package com.example.proiect.navigation.firstPage
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.proiect.model.Location
-import com.example.repo.LocationsRepoImpl
+import com.example.proiect.repo.LocationsRepoImpl
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

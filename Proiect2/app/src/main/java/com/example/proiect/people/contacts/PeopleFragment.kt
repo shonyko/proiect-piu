@@ -82,10 +82,10 @@ class PeopleFragment :Fragment() {
                 binding.noResults.visibility = if(!state.isLoading && state.characters.isEmpty()) View.VISIBLE
                 else View.GONE
                 binding.loading.visibility = if(state.isLoading) View.VISIBLE else View.GONE
+                binding.searchBarAndButton.visibility = if(state.isLoading) View.GONE else View.VISIBLE
                 binding.list.visibility = if(state.isLoading) View.GONE else View.VISIBLE
                 binding.addPerson.visibility = if(state.isLoading) View.GONE else View.VISIBLE
                 charactersAdapter.refreshData(state.characters)
-
             }
         }
     }

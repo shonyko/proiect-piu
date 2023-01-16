@@ -39,21 +39,6 @@ class PagerFragment:Fragment() {
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
             tab.text = pagerAdapter.options[position].name
         }.attach()
-
-        binding.toolbar.menu.getItem(0).setOnMenuItemClickListener {
-            val dialogBuilder = AlertDialog.Builder(requireContext())
-            dialogBuilder
-                .setTitle("Sign out?")
-                .setMessage("Are you sure you want to sign out?")
-                .setPositiveButton("Yes") { _, _ ->
-                    val direction = PagerFragmentDirections.actionSignOut()
-                    findNavController().navigate(direction)
-                }
-                .setNegativeButton("No", null)
-                .create()
-                .show()
-            true
-        }
     }
 
 }

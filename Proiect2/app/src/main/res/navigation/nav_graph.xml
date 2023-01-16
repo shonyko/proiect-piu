@@ -3,16 +3,7 @@
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/nav_graph"
-app:startDestination="@id/loginFragment">
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.proiect.login.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_welcomeFragment"
-            app:destination="@id/pagerFragment" />
-    </fragment>
+app:startDestination="@id/pagerFragment">
     <fragment
         android:id="@+id/pagerFragment"
         android:name="com.example.proiect.pager.PagerFragment"
@@ -27,6 +18,9 @@ app:startDestination="@id/loginFragment">
         <action
             android:id="@+id/initiate_add_person"
             app:destination="@+id/addPersonOptions"/>
+        <action
+            android:id="@+id/confirm_navigation"
+            app:destination="@+id/confirmNavigation"/>
     </fragment>
     <fragment
         android:id="@+id/addPersonOptions"
@@ -57,5 +51,16 @@ app:startDestination="@id/loginFragment">
         <argument
             android:name="characterId"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmNavigation"
+        android:name="com.example.proiect.navigation.navigateTo.confirmNavigation.NavigationConfirmFragment"
+        tools:layout="@layout/fragment_confirm_navigation" >
+        <argument
+            android:name="locationId"
+            app:argType="integer" />
+        <argument
+            android:name="fromSaved"
+            app:argType="boolean" />
     </fragment>
 </navigation>

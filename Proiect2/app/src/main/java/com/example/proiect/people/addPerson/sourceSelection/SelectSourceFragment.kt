@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proiect.databinding.FragmentAddPersonSourceBinding
-import com.example.proiect.pager.PagerFragmentDirections
 
 class SelectSourceFragment: Fragment() {
     private var _binding: FragmentAddPersonSourceBinding? = null
@@ -46,24 +45,6 @@ class SelectSourceFragment: Fragment() {
         binding.list.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = this@SelectSourceFragment.optionsAdapter
-        }
-        binding.toolbar.setNavigationOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
-        }
-        binding.toolbar.title = "Adauga un nou contact"
-        binding.toolbar.menu.getItem(0).setOnMenuItemClickListener {
-            val dialogBuilder = AlertDialog.Builder(requireContext())
-            dialogBuilder
-                .setTitle("Sign out?")
-                .setMessage("Are you sure you want to sign out?")
-                .setPositiveButton("Yes") { _, _ ->
-                    val direction = PagerFragmentDirections.actionSignOut()
-                    findNavController().navigate(direction)
-                }
-                .setNegativeButton("No", null)
-                .create()
-                .show()
-            true
         }
     }
 

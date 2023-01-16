@@ -1,4 +1,4 @@
-package com.example.repo
+package com.example.proiect.repo
 
 import com.example.proiect.model.LoggedInUser
 import com.example.proiect.model.MockData

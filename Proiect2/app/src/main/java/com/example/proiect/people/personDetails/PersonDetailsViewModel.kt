@@ -3,7 +3,7 @@ package com.example.proiect.characterDetails
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.proiect.model.Person
-import com.example.repo.PersonRepoImpl
+import com.example.proiect.repo.PersonRepoImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

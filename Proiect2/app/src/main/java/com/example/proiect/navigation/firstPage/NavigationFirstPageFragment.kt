@@ -45,7 +45,7 @@ class NavigationFirstPageFragment : Fragment() {
         locationsAdapter = NavigationFirstPageAdapter(
             object : NavigationFirstPageAdapter.ClickListener {
                 override fun itemSelected(id: Int) {
-                    val direction = PagerFragmentDirections.actionPersonToDetails(id)
+                    val direction = PagerFragmentDirections.confirmNavigation(id,true)
                     findNavController().navigate(direction)
                 }
             }
@@ -83,6 +83,7 @@ class NavigationFirstPageFragment : Fragment() {
                 binding.loading.visibility = if(state.isLoading) View.VISIBLE else View.GONE
                 binding.list.visibility = if(state.isLoading) View.GONE else View.VISIBLE
                 binding.addPerson.visibility = if(state.isLoading) View.GONE else View.VISIBLE
+                binding.searchBarAndButton.visibility = if(state.isLoading) View.GONE else View.VISIBLE
                 locationsAdapter.refreshData(state.locations)
             }
         }

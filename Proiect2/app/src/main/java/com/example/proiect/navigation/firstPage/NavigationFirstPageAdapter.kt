@@ -36,7 +36,7 @@ class NavigationFirstPageAdapter (private val clickListener: ClickListener
             binding.subtitle.text = item.address
             binding.description.text = item.description
             binding.root.setOnClickListener {
-             //   clickListener.itemSelected(person.id)
+                clickListener.itemSelected(item.id)
             }
         }
     }
