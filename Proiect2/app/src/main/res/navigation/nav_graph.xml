@@ -30,6 +30,12 @@ app:startDestination="@id/loginFragment">
         <action
             android:id="@+id/action_pagerFragment_to_addLocationFragment"
             app:destination="@id/addLocationFragment" />
+        <action
+            android:id="@+id/createQuiz"
+            app:destination="@id/createQuizFragment" />
+        <action
+            android:id="@+id/takeQuiz"
+            app:destination="@id/takeQuizFragment" />
     </fragment>
     <fragment
         android:id="@+id/addPersonOptions"
@@ -66,4 +72,23 @@ app:startDestination="@id/loginFragment">
         android:name="com.example.proiect.navigation.addLocation.AddLocationFragment"
         android:label="fragment_add_location"
         tools:layout="@layout/fragment_add_location" />
+    <fragment
+        android:id="@+id/addQuestionsFragment"
+        android:name="com.example.proiect.quiz.create.AddQuestionsFragment"
+        android:label="fragment_add_questions"
+        tools:layout="@layout/fragment_add_questions" />
+    <fragment
+        android:id="@+id/createQuizFragment"
+        android:name="com.example.proiect.quiz.create.CreateQuizFragment"
+        android:label="fragment_create_quiz"
+        tools:layout="@layout/fragment_create_quiz" >
+        <action
+            android:id="@+id/createQuizToQuestions"
+            app:destination="@id/addQuestionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/takeQuizFragment"
+        android:name="com.example.proiect.quiz.take.TakeQuizFragment"
+        android:label="fragment_take_quiz"
+        tools:layout="@layout/fragment_take_quiz" />
 </navigation>
