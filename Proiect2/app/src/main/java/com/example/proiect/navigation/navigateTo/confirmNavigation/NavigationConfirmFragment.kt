@@ -68,7 +68,8 @@ class NavigationConfirmFragment: Fragment() {
             viewModel.viewState.collect {
                 when (it.action) {
                     NavigationAction.Confirm -> {
-                        startActivity(Intent(requireContext(), MainActivity::class.java))
+                        var dir= NavigationConfirmFragmentDirections.nextNav()
+                        findNavController().navigate(dir)
                     }
                     is NavigationAction.ShowInputErrors -> {
                         binding.purposeInputErr.text = "Te rog sa pui un scop pentru deplasarea ta"

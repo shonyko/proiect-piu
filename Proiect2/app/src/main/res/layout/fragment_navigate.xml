@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".navigation.navigateTo.navigating.NavigatingFragment">
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
@@ -11,11 +13,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:textSize="24sp"
         android:text="Timp estimat de sosireL 12 minute"/>
     <TextView
-        android:id="@+id/purpose"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="3"/>
+        android:layout_marginHorizontal="20dp"
+        android:textSize="22sp"
+        android:text="Scop: Plimbare"/>
 
 </LinearLayout>

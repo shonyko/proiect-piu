@@ -5,11 +5,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".mainMenu.MainMenuFragment">
+    <LinearLayout
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Aminteste-ti sa-ti iei medicamentele"
+            android:maxLines="2"/>
+        <TextView
+            android:id="@+id/subtitle"
+            android:maxLines="3"
+            android:text="Ora: 15:30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:gravity="center"/>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:padding="15dp"
         android:id="@+id/menu_grid"
         android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/banner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_height="0dp"
         >
     </androidx.recyclerview.widget.RecyclerView>

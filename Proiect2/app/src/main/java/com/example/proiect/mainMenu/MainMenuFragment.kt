@@ -17,6 +17,7 @@ import com.example.proiect.R
 import com.example.proiect.databinding.FragmentMainMenuBinding
 import com.example.proiect.databinding.FragmentPeopleListBinding
 import com.example.proiect.model.LoggedInUser
+import com.example.proiect.model.Role
 
 class MainMenuFragment: Fragment() {
     private var _binding: FragmentMainMenuBinding? = null
@@ -50,6 +51,9 @@ class MainMenuFragment: Fragment() {
             layoutManager = GridLayoutManager(context,2)
             adapter = this@MainMenuFragment.adapter
         }
+        if(LoggedInUser.role == Role.PACIENT){
+            binding.banner.visibility = View.VISIBLE
+        } else binding.banner.visibility = View.GONE
 
         adapter.refreshData(LoggedInUser.menuOptions())
     }

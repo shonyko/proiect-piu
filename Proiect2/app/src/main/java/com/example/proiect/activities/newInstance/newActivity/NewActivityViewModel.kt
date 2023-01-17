@@ -77,6 +77,7 @@ class NewActivityViewModel: ViewModel() {
         val durationError = if(duration < 5) InputErrorType.BadQuantity else null
 
         if(titleError != null || dateError != null || durationError != null) {
+            println("Errors")
             _viewState.update { state ->
                 state.copy(
                     action = ActivityAction.ShowInputErrors(
@@ -92,8 +93,8 @@ class NewActivityViewModel: ViewModel() {
 
     fun addActivity() {
         var activity = Notification(
-            viewState.value.title,
-            viewState.value.description,
+            viewState.value.title.trim(),
+            viewState.value.description.trim(),
             viewState.value.date,
             viewState.value.time,
             viewState.value.duration

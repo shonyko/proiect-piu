@@ -1,12 +1,8 @@
 package com.example.proiect.model
 
-
 import com.example.proiect.R
-import com.example.proiect.activities.todaysActivities.TodaysActivitiesFragment
 import com.example.proiect.mainMenu.MainMenuFragmentDirections
-import com.example.proiect.navigation.firstPage.NavigationFirstPageFragment
-import com.example.proiect.people.contacts.PeopleFragment
-import com.example.proiect.quiz.QuizFragment
+
 
 
 /**
@@ -19,6 +15,7 @@ object LoggedInUser {
     var contactPeople: MutableList<Person> = mutableListOf(
         Person(69, "Nume", null, "mock", "Phone", Role.USER)
     )
+
     var savedLocations: MutableList<Location> = mutableListOf(
         Location(
             0, "Magazin", "Magazinul pentru mancare",
@@ -28,31 +25,31 @@ object LoggedInUser {
             1,
             "Căminul numărul 7",
             "Acasă",
-            "Strada Observatorului, Cluj-Napoca 400000",40
+            "Strada Observatorului, Cluj-Napoca 400000", 40
         ),
         Location(
             2,
             "Spitalul Județean de Urgență Cluj-Napoca",
             "Spital pentru control medical",
-            "Str. Clinicilor 3-5, Cluj-Napoca 400347",23
+            "Str. Clinicilor 3-5, Cluj-Napoca 400347", 23
         ),
         Location(
             3,
             "Lidl",
             "Magazin alimentar pentru mâncare",
-            "Strada Republicii 109, Cluj-Napoca 400489",43
+            "Strada Republicii 109, Cluj-Napoca 400489", 43
         ),
         Location(
             4,
             "Auchan",
             "Hypermarket pentru nevoi extra",
-            "Strada Alexandru Vaida Voevod 53B, Cluj-Napoca 400436",41
+            "Strada Alexandru Vaida Voevod 53B, Cluj-Napoca 400436", 41
         ),
         Location(
             5,
             "Îngrijitor",
             "Casa îngrijitorului",
-            "Strada Vasile Lupu nr.35, Cluj-Napoca 400423",32
+            "Strada Vasile Lupu nr.35, Cluj-Napoca 400423", 32
         )
     )
 
@@ -67,10 +64,6 @@ object LoggedInUser {
     fun menuOptions(): List<MainMenuOption> {
         when(role){
             Role.USER -> {
-                /*return listOf(
-                    Option("Contacte", PeopleFragment()),
-                    Option("Quizzes", QuizFragment())
-                )*/
                 return listOf(
                     MainMenuOption("Contacte", R.drawable.ic_baseline_people_alt_24, R.color.mainColor,
                     MainMenuFragmentDirections.goToContacts()),
@@ -87,16 +80,17 @@ object LoggedInUser {
                     MainMenuOption("Contacte", R.drawable.ic_baseline_people_alt_24, R.color.mainColor,
                         MainMenuFragmentDirections.goToContacts()),
                     MainMenuOption("Quizzes", R.drawable.ic_baseline_quiz_24, R.color.mainColor,
-                    MainMenuFragmentDirections.goToQuiz())
-
+                    MainMenuFragmentDirections.goToQuiz()),
+                    MainMenuOption("Galerie", R.drawable.ic_baseline_image_24, R.color.mainColor,
+                            MainMenuFragmentDirections.goToStatistics())
                 )
 
             }
             Role.MEDIC -> {
                 return listOf(
-                    MainMenuOption("Contacte", R.drawable.ic_baseline_people_alt_24, R.color.mainColor,
-                    MainMenuFragmentDirections.goToContacts())
-                    )
+                MainMenuOption("Pacienti",R.drawable.ic_baseline_insert_chart_24, R.color.mainColor,
+                    MainMenuFragmentDirections.goToPatients()))
+
             }
         }
     }

@@ -64,6 +64,13 @@ class ActivityCalendarFragment: Fragment() {
     private fun observeState() {
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.viewState.collect { state ->
+                if(state.activities.isEmpty()){
+                    binding.noActivities.visibility = View.VISIBLE
+                    binding.activityList.visibility = View.GONE
+                } else {
+                    binding.activityList.visibility = View.VISIBLE
+                    binding.noActivities.visibility = View.GONE
+                }
                 adapter.refreshData(state.activities)
             }
         }

@@ -25,7 +25,12 @@ app:startDestination="@id/mainMenu">
             android:id="@+id/go_to_quiz"
             app:destination="@id/pickQuiz"
             />
+        <action android:id="@+id/go_to_patients"
+            app:destination="@id/patientsFragment"/>
+        <action android:id="@+id/go_to_gallery"
+            app:destination="@id/patientsFragment"/>
     </fragment>
+
     <fragment
         android:id="@+id/contacts"
         android:name="com.example.proiect.people.contacts.PeopleFragment"
@@ -66,6 +71,9 @@ app:startDestination="@id/mainMenu">
         <action
             android:id="@+id/createQuiz"
             app:destination="@id/createQuizFragment" />
+        <action
+            android:id="@+id/statisticsFragment"
+            app:destination="@id/statisticsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addPersonOptions"
@@ -107,6 +115,27 @@ app:startDestination="@id/mainMenu">
         <argument
             android:name="fromSaved"
             app:argType="boolean" />
+        <action
+            android:id="@+id/nextNav"
+            app:destination="@id/navigatingToLocation"/>
+    </fragment>
+    <fragment
+        android:id="@+id/navigatingToLocation"
+        android:name="com.example.proiect.navigation.navigateTo.navigating.NavigatingFragment"
+        tools:layout="@layout/fragment_navigate">
+        <action
+            android:id="@+id/reachDestination"
+            app:destination="@id/reachedDestination" />
+    </fragment>
+    <fragment
+        android:id="@+id/reachedDestination"
+        android:name="com.example.proiect.navigation.navigateTo.reachedDestination.ReachedDestinationFragment"
+        tools:layout="@layout/fragment_navigate_to">
+        <action
+            android:id="@+id/goBackHome"
+            app:destination="@id/navigatingToLocation"/>
+        <action android:id="@+id/goSomewhereElse"
+            app:destination="@+id/locations"/>
     </fragment>
     <fragment
         android:id="@+id/addLocationFragment"
@@ -167,4 +196,19 @@ app:startDestination="@id/mainMenu">
             android:id="@+id/add_new_event"
             app:destination="@id/activity_calendar"/>
     </fragment>
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.proiect.statistics.StatisticsFragment"
+        android:label="fragment_statistics"
+        tools:layout="@layout/fragment_statistics" />
+    <fragment
+        android:id="@+id/patientsFragment"
+        android:name="com.example.proiect.people.patients.PatientsFragment"
+        tools:layout="@layout/fragment_patients_list" />
+    <action android:id="@+id/go_to_statistics"
+        app:destination="@+id/statisticsFragment"/>
+    <action
+        android:id="@+id/initiate_add_person"
+        app:destination="@+id/addPersonOptions"/>
+
 </navigation>
