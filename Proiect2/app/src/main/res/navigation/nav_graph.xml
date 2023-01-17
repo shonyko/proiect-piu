@@ -3,33 +3,69 @@
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/nav_graph"
-app:startDestination="@id/pagerFragment">
+app:startDestination="@id/mainMenu">
     <fragment
-        android:id="@+id/pagerFragment"
-        android:name="com.example.proiect.pager.PagerFragment"
-        android:label="fragment_pager"
-        tools:layout="@layout/pager_fragment" >
+        android:id="@+id/mainMenu"
+        android:name="com.example.proiect.mainMenu.MainMenuFragment"
+        tools:layout="@layout/fragment_main_menu" >
+
         <action
-            android:id="@+id/action_person_to_details"
-            app:destination="@+id/personDetailsFragment" />
+            android:id="@+id/go_to_contacts"
+            app:destination="@id/contacts"
+            />
         <action
-            android:id="@+id/action_sign_out"
-            app:destination="@+id/loginFragment" />
+            android:id="@+id/go_to_calendar"
+            app:destination="@id/calendar"
+            />
+        <action
+            android:id="@+id/go_to_locations"
+            app:destination="@id/locations"
+            />
+        <action
+            android:id="@+id/go_to_quiz"
+            app:destination="@id/pickQuiz"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/contacts"
+        android:name="com.example.proiect.people.contacts.PeopleFragment"
+        tools:layout="@layout/fragment_people_list">
         <action
             android:id="@+id/initiate_add_person"
             app:destination="@+id/addPersonOptions"/>
+        <action
+            android:id="@+id/action_person_to_details"
+            app:destination="@+id/personDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/calendar"
+        android:name="com.example.proiect.activities.todaysActivities.TodaysActivitiesFragment"
+        tools:layout="@layout/fragment_activities">
+        <action
+            android:id="@+id/go_to_calendar_act"
+            app:destination="@id/activity_calendar"/>
+    </fragment>
+    <fragment
+        android:id="@+id/locations"
+        android:name="com.example.proiect.navigation.firstPage.NavigationFirstPageFragment"
+        tools:layout="@layout/fragment_location_options">
         <action
             android:id="@+id/confirm_navigation"
             app:destination="@+id/confirmNavigation"/>
         <action
             android:id="@+id/action_pagerFragment_to_addLocationFragment"
             app:destination="@id/addLocationFragment" />
-        <action
-            android:id="@+id/createQuiz"
-            app:destination="@id/createQuizFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pickQuiz"
+        android:name="com.example.proiect.quiz.QuizFragment"
+        tools:layout="@layout/fragment_quiz">
         <action
             android:id="@+id/takeQuiz"
             app:destination="@id/takeQuizFragment" />
+        <action
+            android:id="@+id/createQuiz"
+            app:destination="@id/createQuizFragment" />
     </fragment>
     <fragment
         android:id="@+id/addPersonOptions"
@@ -50,7 +86,7 @@ app:startDestination="@id/pagerFragment">
             app:argType="boolean" />
         <action
             android:id="@+id/confirm_person"
-            app:destination="@id/pagerFragment" />
+            app:destination="@id/contacts" />
     </fragment>
     <fragment
         android:id="@+id/personDetailsFragment"
@@ -96,4 +132,39 @@ app:startDestination="@id/pagerFragment">
         android:name="com.example.proiect.quiz.take.TakeQuizFragment"
         android:label="fragment_take_quiz"
         tools:layout="@layout/fragment_take_quiz" />
+    <fragment
+        android:id="@+id/activity_calendar"
+        android:name="com.example.proiect.activities.activityCalendar.ActivityCalendarFragment"
+        tools:layout="@layout/fragment_activity_calendar">
+        <action
+            android:id="@+id/initiate_add_activity"
+            app:destination="@id/newActivitySelectionFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/newActivitySelectionFragment"
+        android:name="com.example.proiect.activities.newInstance.ActivitySelectionFragment"
+        tools:layout="@layout/fragment_add_activity_option_selection">
+        <action
+            android:id="@+id/action_add_notification_form"
+            app:destination="@id/newNotificationFragment"/>
+        <action
+            android:id="@+id/action_add_event_form"
+            app:destination="@id/newEventFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/newNotificationFragment"
+        android:name="com.example.proiect.activities.newInstance.newActivity.NewActivityFragment"
+        tools:layout="@layout/fragment_new_activity">
+        <action
+            android:id="@+id/add_new_notification"
+            app:destination="@id/activity_calendar"/>
+    </fragment>
+    <fragment
+        android:id="@+id/newEventFragment"
+        android:name="com.example.proiect.activities.newInstance.newEvent.NewEventFragment"
+        tools:layout="@layout/fragment_new_event">
+        <action
+            android:id="@+id/add_new_event"
+            app:destination="@id/activity_calendar"/>
+    </fragment>
 </navigation>

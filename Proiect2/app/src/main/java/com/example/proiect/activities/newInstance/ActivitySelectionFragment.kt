@@ -1,12 +1,12 @@
-package com.example.proiect.activities.new
+package com.example.proiect.activities.newInstance
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proiect.databinding.FragmentAddActivityOptionSelectionBinding
 import com.example.proiect.model.ActionOption
@@ -40,17 +40,21 @@ class ActivitySelectionFragment : Fragment() {
             object : SelectSourceAdapter.OptionClickListener {
                 override fun itemSelected(id: Int) {
                     when(id) {
-                        0-> {}
-                        1-> {}
-                        2->{}
+                        0-> {
+                            val direction = ActivitySelectionFragmentDirections.actionAddNotificationForm()
+                            findNavController().navigate(direction)
+                        }
+                        1-> {
+                            val direction = ActivitySelectionFragmentDirections.actionAddEventForm()
+                            findNavController().navigate(direction)
+                        }
                     }
                 }
             }
         )
         optionsAdapter.dataSource = listOf<ActionOption>(
-            ActionOption("Notificare","Alege "),
-            ActionOption("Eveniment","Creaza un eveniment repetabil"),
-            ActionOption("Checklist","Creaza un eveniment repetabil")
+            ActionOption("Notificare","Alege un eveniment cu care sa fii notificat o singura data la o anumita zi si ora "),
+            ActionOption("Eveniment","Creaza un eveniment repetabil precum o zi de nastere")
         )
         binding.list.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

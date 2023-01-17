@@ -26,15 +26,6 @@ object MockData {
         "Am nevoie de mancare"
     )
 }
-data class Option (
-    val name: String,
-    val fragment: Fragment
-)
-
-data class ActionOption(
-    val name: String,
-    val description: String
-)
 
 data class Session(
     val id: Int,
@@ -52,12 +43,12 @@ object AvailableSession {
         ),
         Session(
             2,"pacient123","pacient123",Role.PACIENT,mutableListOf(
-                Person(69,"Nume",null,"mock","Phone",Role.USER)
+                Person(69,"Nume",null,"mock","Phone",Role.PACIENT)
             )
         ),
         Session(
             3,"medic123","medic123",Role.MEDIC,mutableListOf(
-                Person(69,"Nume",null,"mock","Phone",Role.USER)
+                Person(69,"Nume",null,"mock","Phone",Role.MEDIC)
             )
         )
     )
@@ -68,4 +59,82 @@ object ChatRoom {
     var mockEmergencyReplies: List<Message> = listOf(
         Message(MockData.emergencyChatParticipants.get(0), "O sa vin sa te ajut"),
     Message(MockData.emergencyChatParticipants.get(1),"O sa vin si eu"))
+}
+
+object AvailableActivities {
+    var userActivities : MutableList<Activity> = mutableListOf(
+        Notification(
+            "Administreaza medicamente",
+            "A sosit timpul sa iei medicamentele.",
+            "2023-01-17",
+            "08:00",
+            1
+        ),
+        Notification(
+            "Iesi la plimbare",
+            "E timpul pentru o plimbare.",
+            "2023-01-17",
+            "11:00",
+            60
+        ),
+        Notification(
+            "Micul dejun",
+            "Este timpul pentru micul dejun.",
+            "2023-01-17",
+            "09:00",
+            10
+        ),
+        Notification(
+            "Cina",
+            "Este timpul pentru servirea cinei.",
+            "2023-01-17",
+            "19:30",
+            20
+        ),
+        Notification(
+            "Pranzul",
+            "Este timpul pentru servirea pranzului.",
+            "2023-01-17",
+            "13:30",
+            20
+        ),
+        Notification(
+            "Vizita la medic",
+            "Trebuie sa ajungi la medic.",
+            "2023-01-17",
+            "16:30",
+            30
+        ),
+        Notification(
+            "Vizita la medic",
+            "Trebuie sa ajungi la medic.",
+            "2023-01-17",
+            "16:30",
+            30
+        ),
+        Event(
+            "Ziua nepotului",
+            "Astazi este ziua nepotului tau.",
+            "2023-01-18",
+            Frequency.YEARLY
+        ),
+        Event(
+            "Vizita saptamanala la medic",
+            "Este ziua de mers la medic.",
+            "2023-01-18",
+            Frequency.WEEKLY
+        ),
+        Event(
+            "Cumparaturi",
+            "Este ziua de mers la cumparaturi.",
+            "2023-01-20",
+            Frequency.WEEKLY
+        ),
+        Event(
+            "Apa",
+            "Este momentul sa te hidratezi.",
+            "2023-01-20",
+            Frequency.HOURLY
+        ),
+    )
 }

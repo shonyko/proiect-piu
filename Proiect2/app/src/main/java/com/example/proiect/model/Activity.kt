@@ -9,7 +9,7 @@ interface Activity {
 }
 
 enum class Frequency {
-    HOURLY, DAILY, WEEKLY, YEARLY
+    NEVER, HOURLY, DAILY,MONTHLY, WEEKLY, YEARLY
 }
 data class Notification(
     override val name: String,

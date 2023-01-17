@@ -14,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proiect.R
 import com.example.proiect.databinding.FragmentLocationOptionsBinding
-import com.example.proiect.pager.PagerFragmentDirections
 
 class NavigationFirstPageFragment : Fragment() {
 
@@ -46,7 +45,7 @@ class NavigationFirstPageFragment : Fragment() {
         locationsAdapter = NavigationFirstPageAdapter(
             object : NavigationFirstPageAdapter.ClickListener {
                 override fun itemSelected(id: Int) {
-                    val direction = PagerFragmentDirections.confirmNavigation(id,true)
+                    val direction = NavigationFirstPageFragmentDirections.confirmNavigation(id,true)
                     findNavController().navigate(direction)
                 }
             }
@@ -75,7 +74,7 @@ class NavigationFirstPageFragment : Fragment() {
         }
 
         binding.addLocation.setOnClickListener {
-            val direction = PagerFragmentDirections.actionPagerFragmentToAddLocationFragment()
+            val direction = NavigationFirstPageFragmentDirections.actionPagerFragmentToAddLocationFragment()
             findNavController().navigate(direction)
         }
     }

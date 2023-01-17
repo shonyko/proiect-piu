@@ -1,11 +1,13 @@
 package com.example.proiect.model
 
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
+
+import com.example.proiect.R
 import com.example.proiect.activities.todaysActivities.TodaysActivitiesFragment
+import com.example.proiect.mainMenu.MainMenuFragmentDirections
 import com.example.proiect.navigation.firstPage.NavigationFirstPageFragment
 import com.example.proiect.people.contacts.PeopleFragment
 import com.example.proiect.quiz.QuizFragment
+
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository
@@ -62,26 +64,39 @@ object LoggedInUser {
         contactPeople = user.contactPeople
     }
 
-    fun menuOptions(): List<Option> {
+    fun menuOptions(): List<MainMenuOption> {
         when(role){
             Role.USER -> {
-                return listOf(
+                /*return listOf(
                     Option("Contacte", PeopleFragment()),
                     Option("Quizzes", QuizFragment())
+                )*/
+                return listOf(
+                    MainMenuOption("Contacte", R.drawable.ic_baseline_people_alt_24, R.color.mainColor,
+                    MainMenuFragmentDirections.goToContacts()),
+                    MainMenuOption("Quizuri", R.drawable.ic_baseline_quiz_24, R.color.mainColor,
+                    MainMenuFragmentDirections.goToContacts())
                 )
             }
             Role.PACIENT -> {
                 return listOf(
-                    Option("Contacte", PeopleFragment()),
-                    Option("Navigare", NavigationFirstPageFragment()),
-                    Option("Activitati", TodaysActivitiesFragment()),
-                    Option("Quizzes", QuizFragment())
+                    MainMenuOption("Calendar", R.drawable.ic_baseline_calendar_month_24, R.color.mainColor,
+                        MainMenuFragmentDirections.goToCalendar()),
+                    MainMenuOption("Navigare", R.drawable.ic_baseline_map_24, R.color.mainColor,
+                    MainMenuFragmentDirections.goToLocations()),
+                    MainMenuOption("Contacte", R.drawable.ic_baseline_people_alt_24, R.color.mainColor,
+                        MainMenuFragmentDirections.goToContacts()),
+                    MainMenuOption("Quizzes", R.drawable.ic_baseline_quiz_24, R.color.mainColor,
+                    MainMenuFragmentDirections.goToQuiz())
+
                 )
+
             }
             Role.MEDIC -> {
                 return listOf(
-                    Option("Contacte", PeopleFragment())
-                )
+                    MainMenuOption("Contacte", R.drawable.ic_baseline_people_alt_24, R.color.mainColor,
+                    MainMenuFragmentDirections.goToContacts())
+                    )
             }
         }
     }

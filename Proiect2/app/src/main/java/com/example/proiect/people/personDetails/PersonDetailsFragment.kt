@@ -39,24 +39,7 @@ class PersonDetailsFragment: Fragment() {
     }
 
     private fun setupView() {
-        binding.toolbar.setNavigationOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
-        }
 
-        binding.toolbar.menu.getItem(0).setOnMenuItemClickListener {
-            val dialogBuilder = AlertDialog.Builder(requireContext())
-            dialogBuilder
-                .setTitle("Stergere contact?")
-                .setMessage("Sunteti sigur ca doriti sa stergeti aceasta persoana din contacte? Persoana poate fi oricand readaugata")
-                .setPositiveButton("Confirma") { _, _ ->
-                    viewModel.deleteCharacter()
-                    findNavController().navigateUp()
-                }
-                .setNegativeButton("Anuleaza", null)
-                .create()
-                .show()
-            true
-        }
     }
 
     private fun observeState() {
@@ -68,7 +51,6 @@ class PersonDetailsFragment: Fragment() {
                     )
                 else
                     binding.image.setImageResource(R.drawable.ic_baseline_person_24)
-                binding.toolbar.title = state.character?.name ?: ""
                 binding.title.text = state.character?.name ?: ""
                 binding.description.text = state.character?.description ?: ""
                 binding.manageDescription.text = if(state.character?.description != null) "Editeaza descriere"

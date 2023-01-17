@@ -1,48 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     tools:context=".navigation.navigateTo.confirmNavigation.NavigationConfirmFragment">
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginHorizontal="10dp"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        tools:text="Locatia ta:"/>
+
     <ImageView
-        android:scaleType="fitXY"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        android:id="@+id/map"
-        android:layout_margin="20dp"/>
+        android:layout_height="350dp"
+        android:id="@+id/map"/>
     <TextView
         android:id="@+id/arrival"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/map"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginHorizontal="10dp"
         android:textSize="26sp"
         android:textColor="@color/black"
         tools:text="Timp estimat de sosire: "/>
-    <TextView
-        android:id="@+id/subtitle"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/purposeInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/arrival"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginHorizontal="10dp"
+
+        android:hint="Scopul deplasarii"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginHorizontal="32dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/purposeEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:textSize="24sp"
+            android:maxLines="1"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/purposeInputErr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="@id/purposeInput"
+        app:layout_constraintTop_toBottomOf="@id/purposeInput"
+        android:textSize="24sp"
+        android:textColor="@color/red"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/startWalk"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         android:textSize="26sp"
-        android:textColor="@color/black"
-        android:maxLines="2"
-        tools:text="Timp estimat:"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="Sa pornim!"
+        android:background="@color/mainColor"/>
+
+</LinearLayout>

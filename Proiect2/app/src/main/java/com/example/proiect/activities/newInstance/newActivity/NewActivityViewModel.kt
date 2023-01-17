@@ -1,6 +1,8 @@
-package com.example.proiect.activities.new.newActivity
+package com.example.proiect.activities.newInstance.newActivity
 
 import androidx.lifecycle.ViewModel
+import com.example.proiect.model.Notification
+import com.example.proiect.repo.ActivityRepoImpl
 import com.example.proiect.repo.UserRepoImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,6 +16,7 @@ class NewActivityViewModel: ViewModel() {
     private val initialState = NewActivityViewState()
     private val _viewState = MutableStateFlow(initialState)
     private val userRepo = UserRepoImpl()
+    private val actRepo = ActivityRepoImpl
     val viewState = _viewState.asStateFlow()
 
     fun onTitleChanged(newTitle: String) {
@@ -84,6 +87,23 @@ class NewActivityViewModel: ViewModel() {
                 )
             }
         }
+        else addActivity()
+    }
+
+    fun addActivity() {
+        var activity = Notification(
+            viewState.value.title,
+            viewState.value.description,
+            viewState.value.date,
+            viewState.value.time,
+            viewState.value.duration
+        )
+        actRepo.addActivity(activity)
+        _viewState.update { state ->
+            state.copy(
+                action = ActivityAction.NewActivity
+            )
+        }
     }
 }
 
@@ -92,7 +112,7 @@ data class NewActivityViewState(
     val description: String = "",
     val date: String = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
     val time: String = "00:00",
-    val duration: Int = 0,
+    val duration: Int = 5,
     val action: ActivityAction? = null
 )
 

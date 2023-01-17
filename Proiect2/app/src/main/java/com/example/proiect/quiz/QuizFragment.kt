@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proiect.databinding.FragmentQuizBinding
 import com.example.proiect.model.Quiz
-import com.example.proiect.pager.PagerFragmentDirections
 import com.example.repo.QuizRepoImpl
 
 class QuizFragment : Fragment() {
@@ -47,7 +46,7 @@ class QuizFragment : Fragment() {
                     .setMessage(String.format("Are you sure you want to try %s?", quiz.name))
                     .setPositiveButton("Yes") { _, _ ->
                         QuizRepoImpl.selectQuiz(quiz)
-                        val direction = PagerFragmentDirections.takeQuiz()
+                        val direction = QuizFragmentDirections.takeQuiz()
                         findNavController().navigate(direction)
                     }
                     .setNegativeButton("No", null)
@@ -61,7 +60,7 @@ class QuizFragment : Fragment() {
         }
 
         binding.addQuiz.setOnClickListener {
-            val direction = PagerFragmentDirections.createQuiz()
+            val direction = QuizFragmentDirections.createQuiz()
             findNavController().navigate(direction)
         }
     }

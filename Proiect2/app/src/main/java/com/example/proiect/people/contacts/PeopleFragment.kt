@@ -13,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.navigation.fragment.findNavController
 import com.example.proiect.R
-import com.example.proiect.pager.PagerFragmentDirections
 import com.example.proiect.databinding.FragmentPeopleListBinding
 import com.example.proiect.people.PeopleViewModel
 
@@ -46,7 +45,7 @@ class PeopleFragment :Fragment() {
         charactersAdapter = PeopleAdapter(
             object : PeopleAdapter.PersonClickListener {
                 override fun itemSelected(id: Int) {
-                    val direction = PagerFragmentDirections.actionPersonToDetails(id)
+                    val direction = PeopleFragmentDirections.actionPersonToDetails(id)
                     findNavController().navigate(direction)
                 }
             }
@@ -71,7 +70,7 @@ class PeopleFragment :Fragment() {
             binding.searchInput.editText?.clearFocus()
         }
         binding.addPerson.setOnClickListener {
-            val direction = PagerFragmentDirections.initiateAddPerson()
+            val direction = PeopleFragmentDirections.initiateAddPerson()
             findNavController().navigate(direction)
         }
     }

@@ -1,22 +1,25 @@
-package com.example.proiect.activities.new.newActivity
+package com.example.proiect.activities.newInstance.newEvent
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.proiect.MainActivity
-import com.example.proiect.databinding.FragmentNewActivityBinding
+import com.example.proiect.activities.newInstance.newEvent.ActivityAction
+import com.example.proiect.activities.newInstance.newEvent.InputErrorType
+import com.example.proiect.databinding.FragmentNewEventBinding
 
+class NewEventFragment : Fragment() {
+    private val viewModel: NewEventViewModel by viewModels()
 
-class NewActivityFragment: Fragment() {
-    private val viewModel: NewActivityViewModel by viewModels()
-
-    private var _binding: FragmentNewActivityBinding? = null
+    private var _binding: FragmentNewEventBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -24,7 +27,7 @@ class NewActivityFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNewActivityBinding.inflate(inflater, container, false)
+        _binding = FragmentNewEventBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -55,11 +58,26 @@ class NewActivityFragment: Fragment() {
         binding.time.setOnTimeChangedListener { view, hourOfDay, minute ->
             viewModel.onTimeChanged(hourOfDay.toString()+":"+minute.toString())
         }
-        binding.duration.setOnValueChangedListener { picker, oldVal, newVal ->
-            viewModel.onDurationChanged(newVal)
-        }
+
+        binding.titleInput.editText?.onFocusChangeListener =
+            View.OnFocusChangeListener { v, hasFocus ->
+                if(!hasFocus){
+                    hideKeyboard(v)
+                }
+            }
+        binding.descriptionInput.editText?.onFocusChangeListener =
+            View.OnFocusChangeListener { v, hasFocus ->
+                if(!hasFocus){
+                    hideKeyboard(v)
+                }
+            }
+
     }
 
+    private fun hideKeyboard(v: View) {
+        val imm = this@NewEventFragment.context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(v.windowToken, 0)
+    }
     private fun observeState() {
         lifecycleScope.launchWhenResumed {
             viewModel.viewState.collect {
@@ -70,7 +88,6 @@ class NewActivityFragment: Fragment() {
                     is ActivityAction.ShowInputErrors -> {
                         binding.titleInputErr.text = errorString(it.action.titleError)
                         binding.dateInputErr.text = errorString(it.action.dateError)
-                        binding.durationInputErr.text = errorString(it.action.durationError)
                     }
                     null -> Unit
                 }
@@ -85,9 +102,6 @@ class NewActivityFragment: Fragment() {
             }
             InputErrorType.Empty -> {
                 "Campul este obligatoriu"
-            }
-            InputErrorType.BadQuantity -> {
-                "Durata trebuie sa fie de minim 5 minute"
             }
             null -> ""
         }

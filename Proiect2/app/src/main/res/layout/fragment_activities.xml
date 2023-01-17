@@ -12,36 +12,55 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textColor="@color/black"
-        android:maxLines="3"/>
+        android:gravity="center"
+        android:maxLines="2"/>
+    <LinearLayout
+        android:id="@+id/calendarButton"
+        app:layout_constraintTop_toBottomOf="@id/currDay"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/rounded_color_box"
+        android:backgroundTint="@color/mainColor"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="7dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/ic_baseline_calendar_month_24"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calendar"
+            android:textSize="28sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="6dp"/>
+    </LinearLayout>
     <TextView
         android:layout_margin="20dp"
         android:id="@+id/noActivities"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/currDay"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="24sp"
         android:textColor="@color/black"
-        android:text="Nu aveti activitati in aceasta zi. Puteti crea activitati din butonul rotund din coltul din dreapta jos"
+        android:text="Nu aveti activitati astazi. Puteti merge spre butonul de a crea activitati apasand pe butonul de calendar"
         android:maxLines="12"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginVertical="20dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/currDay"
+        app:layout_constraintTop_toBottomOf="@id/calendarButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/activities"
         />
-    <ImageButton
-        android:id="@+id/add"
-        android:layout_margin="10dp"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/rounded_corner"
-        android:src="@drawable/ic_baseline_add_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

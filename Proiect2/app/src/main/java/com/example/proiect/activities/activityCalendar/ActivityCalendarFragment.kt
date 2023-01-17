@@ -11,14 +11,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proiect.activities.ActivitiesAdapter
 import com.example.proiect.databinding.FragmentActivityCalendarBinding
-import com.example.proiect.pager.PagerFragmentDirections
 import com.example.proiect.people.PeopleViewModel
 
 class ActivityCalendarFragment: Fragment() {
     private var _binding: FragmentActivityCalendarBinding? = null
     private val binding get() = _binding!!
 
-    val viewModel: PeopleViewModel by viewModels()
+    val viewModel: ActivityCalendarViewModel by viewModels()
 
     private lateinit var adapter: ActivitiesAdapter
 
@@ -41,9 +40,8 @@ class ActivityCalendarFragment: Fragment() {
         binding.noActivities.visibility = View.GONE
         adapter = ActivitiesAdapter(
             object : ActivitiesAdapter.ClickListener {
-                override fun itemSelected(id: Int) {
-                    val direction = PagerFragmentDirections.actionPersonToDetails(id)
-                    findNavController().navigate(direction)
+                override fun itemSelected(activityId: Int) {
+                    //findNavController().navigate(direction)
                 }
             }
         )
@@ -53,17 +51,20 @@ class ActivityCalendarFragment: Fragment() {
         }
 
         binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-
+            viewModel.reload(year,month+1,dayOfMonth)
         }
+
+        binding.add.setOnClickListener {
+            val direction = ActivityCalendarFragmentDirections.initiateAddActivity()
+            findNavController().navigate(direction)
+        }
+        viewModel.reload()
     }
 
     private fun observeState() {
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.viewState.collect { state ->
-                binding.noActivities.visibility = if(!state.isLoading && state.characters.isEmpty()) View.VISIBLE
-                else View.GONE
-                binding.activityList.visibility = if(state.isLoading) View.GONE else View.VISIBLE
-                adapter.refreshData(state.characters)
+                adapter.refreshData(state.activities)
             }
         }
     }

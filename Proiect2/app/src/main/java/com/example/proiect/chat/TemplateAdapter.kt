@@ -35,6 +35,9 @@ class TemplateAdapter(private val listener: ClickListener):
 
         with(holder) {
             binding.text.text = item
+            binding.text.setOnClickListener {
+                listener.itemSelected(item)
+            }
         }
     }
 
