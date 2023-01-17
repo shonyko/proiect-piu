@@ -1,37 +1,92 @@
 package com.example.proiect.statistics
 
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.proiect.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.proiect.databinding.FragmentStatisticsBinding
+import com.jjoe64.graphview.series.DataPoint
+import com.jjoe64.graphview.series.LineGraphSeries
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [StatisticsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class StatisticsFragment : Fragment() {
     private lateinit var binding: FragmentStatisticsBinding
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentStatisticsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    private fun setupView() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        setupView()
+        observeState()
+    }
+
+    private fun setupView() {
+        binding.toolbar.setNavigationOnClickListener {
+            goBack()
+        }
+
+        val series: LineGraphSeries<DataPoint> = LineGraphSeries(
+            arrayOf(
+                // on below line we are adding
+                // each point on our x and y axis.
+                DataPoint(0.0, 4.0),
+                DataPoint(1.0, 5.0),
+                DataPoint(2.0, 3.0),
+                DataPoint(3.0, 6.0),
+                DataPoint(4.0, 6.0),
+                DataPoint(5.0, 5.0),
+                DataPoint(6.0, 0.0),
+                DataPoint(7.0, 1.0),
+                DataPoint(8.0, 1.0),
+            )
+        )
+
+        val series2: LineGraphSeries<DataPoint> = LineGraphSeries(
+            arrayOf(
+                // on below line we are adding
+                // each point on our x and y axis.
+                DataPoint(0.0, 1.0),
+                DataPoint(1.0, 2.0),
+                DataPoint(2.0, 3.0),
+                DataPoint(3.0, 0.0),
+                DataPoint(4.0, 6.0),
+                DataPoint(5.0, 4.0),
+                DataPoint(6.0, 5.0),
+                DataPoint(7.0, 7.0),
+                DataPoint(8.0, 6.0),
+            )
+        )
+
+        series2.color = Color.RED
+
+        with(binding.idGraphView) {
+            animate()
+            viewport.isScrollable = true
+//            viewport.isScalable = true
+//            viewport.setScalableY(true)
+            viewport.setScrollableY(true)
+            addSeries(series)
+            addSeries(series2)
+        }
+    }
+
+    private fun observeState() {
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+
+        }
+    }
+
+    private fun goBack() {
+        requireActivity().onBackPressedDispatcher.onBackPressed()
     }
 }

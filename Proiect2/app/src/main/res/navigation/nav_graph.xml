@@ -30,6 +30,9 @@ app:startDestination="@id/pagerFragment">
         <action
             android:id="@+id/takeQuiz"
             app:destination="@id/takeQuizFragment" />
+        <action
+            android:id="@+id/statisticsFragment"
+            app:destination="@id/statisticsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addPersonOptions"
@@ -96,4 +99,9 @@ app:startDestination="@id/pagerFragment">
         android:name="com.example.proiect.quiz.take.TakeQuizFragment"
         android:label="fragment_take_quiz"
         tools:layout="@layout/fragment_take_quiz" />
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.proiect.statistics.StatisticsFragment"
+        android:label="fragment_statistics"
+        tools:layout="@layout/fragment_statistics" />
 </navigation>

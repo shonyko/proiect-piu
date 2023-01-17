@@ -32,7 +32,7 @@ class PagerFragment:Fragment() {
 
     private fun setupViews() {
         pagerAdapter = PagerAdapter(this)
-        session.role = Role.PACIENT
+//        session.role = Role.PACIENT
         pagerAdapter.options = session.menuOptions()
         binding.pager.adapter = pagerAdapter
 

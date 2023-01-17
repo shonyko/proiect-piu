@@ -2,15 +2,10 @@ package com.example.proiect.gallery
 
 //import com.bumptech.glide.Glide
 import android.content.Context
-import android.graphics.Bitmap
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.example.proiect.databinding.FragmentGalleryListItemBinding
-import com.squareup.picasso.Picasso
 
 
 class GalleryAdapter : RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
@@ -45,12 +40,12 @@ class GalleryAdapter : RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() 
 //                .into(binding.image)
 //            Picasso.get().load(url).resize(50, 50).into(binding.image)
 //            Picasso.get().load(url).into(binding.image)
-            val uiHandler = Handler(Looper.getMainLooper())
-            uiHandler.post(Runnable {
-                Picasso.get()
-                    .load(url)
-                    .into(binding.image)
-            })
+//            val uiHandler = Handler(Looper.getMainLooper())
+//            uiHandler.post(Runnable {
+//                Picasso.get()
+//                    .load(url)
+//                    .into(binding.image)
+//            })
 //            binding.image.load(url)
         }
     }

@@ -1,11 +1,10 @@
 package com.example.proiect.model
 
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import com.example.proiect.activities.todaysActivities.TodaysActivitiesFragment
 import com.example.proiect.gallery.GalleryFragment
 import com.example.proiect.navigation.firstPage.NavigationFirstPageFragment
 import com.example.proiect.people.contacts.PeopleFragment
+import com.example.proiect.people.patients.PatientsFragment
 import com.example.proiect.quiz.QuizFragment
 
 /**
@@ -18,6 +17,7 @@ object LoggedInUser {
     var contactPeople: MutableList<Person> = mutableListOf(
         Person(69, "Nume", null, "mock", "Phone", Role.USER)
     )
+
     var savedLocations: MutableList<Location> = mutableListOf(
         Location(
             0, "Magazin", "Magazinul pentru mancare",
@@ -77,12 +77,12 @@ object LoggedInUser {
                     Option("Navigare", NavigationFirstPageFragment()),
                     Option("Activitati", TodaysActivitiesFragment()),
                     Option("Quizzes", QuizFragment()),
-                    Option("Gallery", GalleryFragment())
+                    Option("Gallery", GalleryFragment()),
                 )
             }
             Role.MEDIC -> {
                 return listOf(
-                    Option("Contacte", PeopleFragment())
+                    Option("Patients", PatientsFragment()),
                 )
             }
         }
