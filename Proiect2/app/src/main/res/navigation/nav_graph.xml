@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/nav_graph"
+app:startDestination="@id/pagerFragment">
+    <fragment
+        android:id="@+id/pagerFragment"
+        android:name="com.example.proiect.pager.PagerFragment"
+        android:label="fragment_pager"
+        tools:layout="@layout/pager_fragment" >
+        <action
+            android:id="@+id/action_person_to_details"
+            app:destination="@+id/personDetailsFragment" />
+        <action
+            android:id="@+id/action_sign_out"
+            app:destination="@+id/loginFragment" />
+        <action
+            android:id="@+id/initiate_add_person"
+            app:destination="@+id/addPersonOptions"/>
+        <action
+            android:id="@+id/confirm_navigation"
+            app:destination="@+id/confirmNavigation"/>
+        <action
+            android:id="@+id/action_pagerFragment_to_addLocationFragment"
+            app:destination="@id/addLocationFragment" />
+        <action
+            android:id="@+id/createQuiz"
+            app:destination="@id/createQuizFragment" />
+        <action
+            android:id="@+id/takeQuiz"
+            app:destination="@id/takeQuizFragment" />
+        <action
+            android:id="@+id/statisticsFragment"
+            app:destination="@id/statisticsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPersonOptions"
+    android:name="com.example.proiect.people.addPerson.sourceSelection.SelectSourceFragment"
+    android:label="fragment_add_person_source"
+    tools:layout="@layout/fragment_add_person_source" >
+        <action
+            android:id="@+id/action_add_person_source_to_person_list"
+            app:destination="@+id/addPerson" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPerson"
+        android:name="com.example.proiect.people.addPerson.personSelection.PersonSelectionFragment"
+        android:label="fragment_add_person_list"
+        tools:layout="@layout/fragment_add_person_list" >
+        <argument
+            android:name="fromContacts"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/confirm_person"
+            app:destination="@id/pagerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personDetailsFragment"
+        android:name="com.example.proiect.people.personDetails.PersonDetailsFragment"
+        android:label="fragment_go_to_details"
+        tools:layout="@layout/fragment_person_details" >
+        <argument
+            android:name="characterId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmNavigation"
+        android:name="com.example.proiect.navigation.navigateTo.confirmNavigation.NavigationConfirmFragment"
+        tools:layout="@layout/fragment_confirm_navigation" >
+        <argument
+            android:name="locationId"
+            app:argType="integer" />
+        <argument
+            android:name="fromSaved"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/addLocationFragment"
+        android:name="com.example.proiect.navigation.addLocation.AddLocationFragment"
+        android:label="fragment_add_location"
+        tools:layout="@layout/fragment_add_location" />
+    <fragment
+        android:id="@+id/addQuestionsFragment"
+        android:name="com.example.proiect.quiz.create.AddQuestionsFragment"
+        android:label="fragment_add_questions"
+        tools:layout="@layout/fragment_add_questions" />
+    <fragment
+        android:id="@+id/createQuizFragment"
+        android:name="com.example.proiect.quiz.create.CreateQuizFragment"
+        android:label="fragment_create_quiz"
+        tools:layout="@layout/fragment_create_quiz" >
+        <action
+            android:id="@+id/createQuizToQuestions"
+            app:destination="@id/addQuestionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/takeQuizFragment"
+        android:name="com.example.proiect.quiz.take.TakeQuizFragment"
+        android:label="fragment_take_quiz"
+        tools:layout="@layout/fragment_take_quiz" />
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.proiect.statistics.StatisticsFragment"
+        android:label="fragment_statistics"
+        tools:layout="@layout/fragment_statistics" />
+</navigation>
