@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img"
+                    android:src="@drawable/map_mock"
                     app:layout_constraintBottom_toTopOf="@id/form"
                     app:layout_constraintHeight_max="300dp"
                     app:layout_constraintTop_toTopOf="parent" />

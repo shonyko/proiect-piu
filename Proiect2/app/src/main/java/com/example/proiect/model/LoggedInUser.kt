@@ -3,6 +3,7 @@ package com.example.proiect.model
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.example.proiect.activities.todaysActivities.TodaysActivitiesFragment
+import com.example.proiect.gallery.GalleryFragment
 import com.example.proiect.navigation.firstPage.NavigationFirstPageFragment
 import com.example.proiect.people.contacts.PeopleFragment
 import com.example.proiect.quiz.QuizFragment
@@ -26,31 +27,31 @@ object LoggedInUser {
             1,
             "Căminul numărul 7",
             "Acasă",
-            "Strada Observatorului, Cluj-Napoca 400000",40
+            "Strada Observatorului, Cluj-Napoca 400000", 40
         ),
         Location(
             2,
             "Spitalul Județean de Urgență Cluj-Napoca",
             "Spital pentru control medical",
-            "Str. Clinicilor 3-5, Cluj-Napoca 400347",23
+            "Str. Clinicilor 3-5, Cluj-Napoca 400347", 23
         ),
         Location(
             3,
             "Lidl",
             "Magazin alimentar pentru mâncare",
-            "Strada Republicii 109, Cluj-Napoca 400489",43
+            "Strada Republicii 109, Cluj-Napoca 400489", 43
         ),
         Location(
             4,
             "Auchan",
             "Hypermarket pentru nevoi extra",
-            "Strada Alexandru Vaida Voevod 53B, Cluj-Napoca 400436",41
+            "Strada Alexandru Vaida Voevod 53B, Cluj-Napoca 400436", 41
         ),
         Location(
             5,
             "Îngrijitor",
             "Casa îngrijitorului",
-            "Strada Vasile Lupu nr.35, Cluj-Napoca 400423",32
+            "Strada Vasile Lupu nr.35, Cluj-Napoca 400423", 32
         )
     )
 
@@ -63,7 +64,7 @@ object LoggedInUser {
     }
 
     fun menuOptions(): List<Option> {
-        when(role){
+        when (role) {
             Role.USER -> {
                 return listOf(
                     Option("Contacte", PeopleFragment()),
@@ -75,7 +76,8 @@ object LoggedInUser {
                     Option("Contacte", PeopleFragment()),
                     Option("Navigare", NavigationFirstPageFragment()),
                     Option("Activitati", TodaysActivitiesFragment()),
-                    Option("Quizzes", QuizFragment())
+                    Option("Quizzes", QuizFragment()),
+                    Option("Gallery", GalleryFragment())
                 )
             }
             Role.MEDIC -> {
