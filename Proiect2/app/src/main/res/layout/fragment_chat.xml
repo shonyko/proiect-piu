@@ -13,7 +13,7 @@
         android:foregroundGravity="bottom"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sendTextAndButton"
+        app:layout_constraintBottom_toTopOf="@id/templates"
         />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/templates"

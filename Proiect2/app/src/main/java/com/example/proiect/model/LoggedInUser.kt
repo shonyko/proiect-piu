@@ -68,7 +68,7 @@ object LoggedInUser {
                     MainMenuOption("Contacte", R.drawable.ic_baseline_people_alt_24, R.color.mainColor,
                     MainMenuFragmentDirections.goToContacts()),
                     MainMenuOption("Quizuri", R.drawable.ic_baseline_quiz_24, R.color.mainColor,
-                    MainMenuFragmentDirections.goToContacts())
+                    MainMenuFragmentDirections.goToQuiz())
                 )
             }
             Role.PACIENT -> {
@@ -82,7 +82,7 @@ object LoggedInUser {
                     MainMenuOption("Quizzes", R.drawable.ic_baseline_quiz_24, R.color.mainColor,
                     MainMenuFragmentDirections.goToQuiz()),
                     MainMenuOption("Galerie", R.drawable.ic_baseline_image_24, R.color.mainColor,
-                            MainMenuFragmentDirections.goToStatistics())
+                            MainMenuFragmentDirections.goToGallery())
                 )
 
             }

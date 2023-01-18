@@ -59,12 +59,15 @@ class NewEventViewModel: ViewModel() {
     fun onCreate() {
         val title = _viewState.value.title.trim()
         val description = _viewState.value.title.trim()
-        val date = LocalDateTime.parse(_viewState.value.date+" "+_viewState.value.time,
-            DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"))
+        var time = _viewState.value.time
+        if(time.length == 4) time = "0"+time
+
+        val date = LocalDate.parse(_viewState.value.date,
+            DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
         val titleError = if(title.isBlank()) InputErrorType.Empty else
             null
-        val dateError = if(date.isBefore(LocalDateTime.now())) InputErrorType.BadDate else null
+        val dateError = if(date.isBefore(LocalDate.now())) InputErrorType.BadDate else null
         if(titleError != null || dateError != null) {
             _viewState.update { state ->
                 state.copy(

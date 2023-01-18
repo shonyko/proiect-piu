@@ -35,9 +35,7 @@ class GalleryFragment : Fragment() {
     }
 
     private fun setupView() {
-        binding.toolbar.setNavigationOnClickListener {
-            goBack()
-        }
+
 
 //        this.adapter = GalleryAdapter()
 //        binding.list.apply {

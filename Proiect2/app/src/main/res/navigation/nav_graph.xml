@@ -28,7 +28,7 @@ app:startDestination="@id/mainMenu">
         <action android:id="@+id/go_to_patients"
             app:destination="@id/patientsFragment"/>
         <action android:id="@+id/go_to_gallery"
-            app:destination="@id/patientsFragment"/>
+            app:destination="@id/galleryFragment"/>
     </fragment>
 
     <fragment
@@ -210,5 +210,10 @@ app:startDestination="@id/mainMenu">
     <action
         android:id="@+id/initiate_add_person"
         app:destination="@+id/addPersonOptions"/>
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.example.proiect.gallery.GalleryFragment"
+        tools:layout="@layout/fragment_gallery">
+    </fragment>
 
 </navigation>

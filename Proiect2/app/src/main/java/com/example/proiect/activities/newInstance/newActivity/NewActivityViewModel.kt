@@ -66,18 +66,20 @@ class NewActivityViewModel: ViewModel() {
 
     fun onCreate() {
         val title = _viewState.value.title.trim()
-        val description = _viewState.value.title.trim()
-        val date = LocalDateTime.parse(_viewState.value.date+" "+_viewState.value.time,
-            DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"))
+        var time = _viewState.value.time
+        if(time.length == 4) time = "0"+time
+        println(_viewState.value.date+" "+time)
+        val date = LocalDate.parse(_viewState.value.date,
+            DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         val duration = _viewState.value.duration
 
         val titleError = if(title.isBlank()) InputErrorType.Empty else
             null
-        val dateError = if(date.isBefore(LocalDateTime.now())) InputErrorType.BadDate else null
+        println(date)
+        val dateError = if(date.isBefore(LocalDate.now())) InputErrorType.BadDate else null
         val durationError = if(duration < 5) InputErrorType.BadQuantity else null
 
         if(titleError != null || dateError != null || durationError != null) {
-            println("Errors")
             _viewState.update { state ->
                 state.copy(
                     action = ActivityAction.ShowInputErrors(

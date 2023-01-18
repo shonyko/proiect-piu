@@ -9,6 +9,7 @@
     android:background="@drawable/rounded_color_box"
     android:backgroundTint="@color/mainColor"
     android:padding="8dp"
+    android:id="@+id/backgroundScreen"
     >
 
     <TextView
@@ -20,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         tools:text="Rick"/>
     <TextView
         android:id="@+id/time"
@@ -31,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:textSize="24sp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:maxLines="3"/>
     <TextView
         android:id="@+id/description"
@@ -41,7 +42,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="24sp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:background="@drawable/rounded_color_box"
         android:maxLines="3"/>
 

@@ -15,6 +15,8 @@ import com.example.proiect.MainActivity
 import com.example.proiect.activities.newInstance.newEvent.ActivityAction
 import com.example.proiect.activities.newInstance.newEvent.InputErrorType
 import com.example.proiect.databinding.FragmentNewEventBinding
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class NewEventFragment : Fragment() {
     private val viewModel: NewEventViewModel by viewModels()
@@ -52,7 +54,7 @@ class NewEventFragment : Fragment() {
         }
 
         binding.datePicker.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            viewModel.onDateChanged(year.toString()+"-"+month.toString()+"-"+dayOfMonth.toString())
+            viewModel.onDateChanged(LocalDate.of(year,month+1,dayOfMonth).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
         }
 
         binding.time.setOnTimeChangedListener { view, hourOfDay, minute ->

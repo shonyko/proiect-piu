@@ -11,9 +11,9 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.proiect.MainActivity
-import com.example.proiect.R
 import com.example.proiect.databinding.FragmentNewActivityBinding
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 
 class NewActivityFragment: Fragment() {
@@ -52,7 +52,7 @@ class NewActivityFragment: Fragment() {
         }
 
         binding.datePicker.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            viewModel.onDateChanged(year.toString()+"-"+month.toString()+"-"+dayOfMonth.toString())
+            viewModel.onDateChanged(LocalDate.of(year,month+1,dayOfMonth).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
         }
 
         binding.time.setOnTimeChangedListener { view, hourOfDay, minute ->

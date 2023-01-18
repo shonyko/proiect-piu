@@ -2,12 +2,14 @@ package com.example.proiect.activities
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.proiect.R
 import com.example.proiect.databinding.FragmentActivityItemBinding
 import com.example.proiect.databinding.FragmentPeopleListItemBinding
 import com.example.proiect.model.Activity
+import com.example.proiect.model.Notification
 import com.example.proiect.model.Person
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -15,6 +17,8 @@ import java.time.format.DateTimeFormatter
 class ActivitiesAdapter(
     private val clickListener: ClickListener
 ) : RecyclerView.Adapter<ActivitiesAdapter.ActivityViewHolder>() {
+    private var color1: Int = 0
+    private var color2: Int = 0
     inner class ActivityViewHolder(
         val binding: FragmentActivityItemBinding
     ): RecyclerView.ViewHolder(binding.root)
@@ -31,6 +35,9 @@ class ActivitiesAdapter(
             parent,
             false
         )
+
+        color1 = ContextCompat.getColor(parent.context,R.color.secondaryColor)
+        color2 = ContextCompat.getColor(parent.context,R.color.purple_500)
 
         return ActivityViewHolder(binding)
     }
